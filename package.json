@@ -1,0 +1,29 @@
+{
+  "name": "couponsapp",
+  "version": "1.0.0",
+  "description": "Coupon App Backend Project created with the microservices enabled Development Environment",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://rahulsai143:rsns.k143@github.com/rahulsai143/couponsappnode.git"
+  },
+  "author": "rahulsai143",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahulsai143/couponsappnode/issues"
+  },
+  "homepage": "https://github.com/rahulsai143/couponsappnode#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.0",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-github2": "^0.1.12",
+    "typescript": "^3.9.7"
+  }
+}
