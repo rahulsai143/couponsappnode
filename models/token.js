@@ -2,9 +2,9 @@
  * module dependencies
  */
 
- var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
- var tokenSchema = new mongoose.Schema({
+const tokenSchema = new mongoose.Schema({
     token :{
         type : String,
         required:true
@@ -20,6 +20,6 @@
     }
  });
  
- var token = mongoose.model('token',tokenSchema,'tokens');
+const token = mongoose.model('token',tokenSchema,'tokens');
 
- module.exports = token;
+module.exports = token;

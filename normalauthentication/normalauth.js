@@ -1,6 +1,9 @@
-var express = require('express');
+/**
+ * module dependencies
+ */
 
-var route = express.Route();
+const express = require('express');
+const route = express.Route();
 
 route.get('/login',(req,res) =>{
         var query = {'username': req.username};
@@ -10,6 +13,5 @@ route.get('/login',(req,res) =>{
 });
 
 route.get('/logout',(req,res)=>{
-        
         res.redirect('/login');
 })

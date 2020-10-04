@@ -1,21 +1,14 @@
 /**
  * module dependencies
  */
-var express = require('express');
-var route = express.Router();
+const express = require('express');
+const route = express.Router();
 
-var user = require('../models/userschema');
+const user = require('../models/userschema');
 
 route.post('/createuser',(req,res) =>{
     res.writeHead(200,{'Content-Type':'text/plain'});
-    var userObject = new user({
-        username: req.body.username, 
-        password: req.body.password 
-    });
-    userObject.save( function(err, data) {
-        if (err) throw err;  
-        res.end(`${data.username} is inserted successfully`);
-    })
+    res.end('Create User');
 })
 
 route.put('/updateuser/:id',(req,res)=>{

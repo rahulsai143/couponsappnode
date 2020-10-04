@@ -2,9 +2,9 @@
  * module dependencies
  */
 
-var user = require('../models/userschema');
+const user = require('../models/userschema');
 
-var getUser = verificationToken => {
+const getUser = verificationToken => {
     tokenData = user.find({
         token:verificationToken}
         );
@@ -14,4 +14,3 @@ var getUser = verificationToken => {
     return null;
 }
 
-var 

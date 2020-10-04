@@ -2,12 +2,12 @@
 *    module dependencies
 *
 */
-var express = require('express');
-var bodyparser = require('body-parser');
-var mongoose = require('mongoose');
-var couponRouter = require('./couponsrouter/couponsrouter');
+const express = require('express');
+const bodyparser = require('body-parser');
+const mongoose = require('mongoose');
+const couponRouter = require('./couponsrouter/couponsrouter');
 
-var app = express();
+const app = express();
 
 var db = null;
 
@@ -16,7 +16,7 @@ app.use('/couponsapp',couponRouter);
 
 app.get('/',(req,res) =>{
     res.writeHead(200,{'Content-Type':'text/plain'});
-    res.end('Hello world');
+    res.end('Home page');
 })
 
 // Initialize connection once
@@ -31,7 +31,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/couponsapp', {
   db = database;
   // Start the application after the database connection is ready
   app.listen(3000);
-    console.log('the server is up and running');
-});
+  console.log('the server is up and running');
+})
 
 module.exports = db;
