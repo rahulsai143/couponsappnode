@@ -3,5 +3,5 @@
 *
 */
 
-var passport = require('passport');
-var facebookStrategy = require('passport-facebook').Strategy;
+const passport = require('passport');
+const facebookStrategy = require('passport-facebook').Strategy;

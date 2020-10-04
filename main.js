@@ -2,42 +2,34 @@
 *    module dependencies
 *
 */
-var express = require('express');
-var bodyparser = require('body-parser');
-var mongoose = require('mongoose');
-var couponRouter = require('./couponsrouter/couponsrouter');
+const express = require('express');
+const bodyparser = require('body-parser');
+const mongoose = require('mongoose');
+const couponrouter = require('./couponsrouter/couponsrouter');
+const normalauth = require('./normalauthentication/normalauth');
 
 var app = express();
 
 var db = null;
 
 app.use(bodyparser.json());
-app.use('/api',couponRouter);
+app.use('/couponrouter',couponrouter);
+app.use('/normalauth',normalauth);
 
 app.get('/',(req,res) =>{
     res.writeHead(200,{'Content-Type':'text/plain'});
-    res.end('Hello world');
-})
-
-app.post('/createuser',(req,res) =>{
-    
-})
-
-app.put('/updateuser/:id',(req,res)=>{
-    
-})
-
-app.delete('/deleteuser/:id',(req,res) =>{
-    
+    res.end('Main Html Page');
 })
 
 // Initialize connection once
+//mongodb+srv://rahulsai143:rsns.kp143@couponsapp.zg3kl.mongodb.net/couponsapp?retryWrites=true&w=majority
 mongoose.connect('mongodb://127.0.0.1:27017/couponsapp', {
-    socketTimeoutMS: 0,
     keepAlive: true,
-    useCreateIndex: true,
+    socketTimeoutMS: 0,
     useNewUrlParser:true,
-    useUnifiedTopology:true
+    useCreateIndex: true,
+    useUnifiedTopology:true,
+    poolSize: 10
 },(err, database) => {
   if(err) throw err;
   db = database;

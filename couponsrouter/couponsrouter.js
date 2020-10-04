@@ -1,30 +1,24 @@
-var express = require('express');
+const express = require('express');
+const mongoose = require('mongoose');
+const db = require('../main');
+const user = require('../models/userschema');
+const bcrypt = require('bcrypt');
+
 var route = express.Router();
-var mongoose = require('mongoose');
-var db = require('../main');
-
-var user = require('../models/userschema');
-
-
-route.get('/login',(req,res) =>{
-    var query = {
-        'username':'rahulsai143'
-    }
-    user.find(query,function (err, document) {
-        if (err) throw err;
-    
-})
 
 route.post('/createuser',(req,res) =>{
     res.writeHead(200,{'Content-Type':'text/plain'});
-    var userObject = new user({
-            username: req.body.username, 
-            password: req.body.password 
-    })
-    userObject.save( function(err, data) {
-        if (err) throw err;  
-        res.end(`${data.username} is inserted successfully`);
- })
+    let userObject = new user();
+    let saltRounds = 10;
+    bcrypt.hash(req.body.password , saltRounds, function(err, hash) {
+        if (err) throw err;
+    // Store username and hash password to DB.
+        userObject.username = req.body.username;
+        userObject.password = hash;
+        userObject.save(function(err, data) {
+            if (err) throw err;
+        });
+    });
 })
 
 route.put('/updateuser/:id',(req,res)=>{
@@ -33,7 +27,6 @@ route.put('/updateuser/:id',(req,res)=>{
 
 route.delete('/deleteuser/:id',(req,res) =>{
     
-})
-    
+})   
 
 module.exports = route;
