@@ -5,10 +5,11 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
+
 const couponrouter = require('./couponsrouter/couponsrouter');
 const normalauth = require('./normalauthentication/normalauth');
 
-var app = express();
+const app = express();
 
 var db = null;
 

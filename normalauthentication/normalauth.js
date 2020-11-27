@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const db = require('../main');
 const userSchema = require('../models/userschema');
 
-var route = express.Router();
+const route = express.Router();
 
 route.post('/login',(req,res) =>{
     compare(req,res);
@@ -23,7 +23,7 @@ async function compare(req,res){
     const doc = await userSchema.findOne({
         username : req.body.username
     }).exec();
-    const match = await  bcrypt.compare(req.body.password,doc.password);
+    const match = await bcrypt.compare(req.body.password,doc.password);
     if(match){
         res.send('login successful');
     }else {
