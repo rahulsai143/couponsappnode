@@ -1,4 +1,4 @@
-    /**
+/**
 * module dependencies
 *
 */
@@ -21,14 +21,14 @@ route.get('/logout',(req,res)=>{
 async function compare(req,res){
        // Load hash from your password DB.
     const doc = await userSchema.findOne({
-        username : req.body.username
+        userName : req.body.userName
     }).exec();
-    const match = await bcrypt.compare(req.body.password,doc.password);
-    if(match){
-        res.send('login successful');
-    }else {
-        res.send('login unsuccessful');
-    }
+    const match = await bcrypt.compare(req.body.password,doc.password).then(match =>{
+        if(match)
+            res.send('login successful');
+        else 
+            res.send('login unsuccessful');
+    })
 }
 
 module.exports = route;

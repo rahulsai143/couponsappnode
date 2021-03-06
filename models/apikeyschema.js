@@ -9,7 +9,6 @@ const apiKeySchema = new mongoose.Schema({
     key: {
         type: String,
         required: true,
-        unique: true,
         trim:true,
         maxlength: 1024,
     },
@@ -44,38 +43,38 @@ const apiKeySchema = new mongoose.Schema({
   versionKey: false
 })
 
-apiKeySchema.virtual('keygetterandsetter').get(function(){
+apiKeySchema.virtual('keyGetterAndSetter').get(function(){
     return this.key;
 }).set(function(key){
     this.set({key});
 })
 
-apiKeySchema.virtual('versiongetterandsetter').get(function(){
+apiKeySchema.virtual('versionGetterAndSetter').get(function(){
     return this.version;
 }).set(function(version){
     this.set({version});
 })
 
-apiKeySchema.virtual('metadatagetterandsetter').get(function(){
+apiKeySchema.virtual('metadataGetterAndSetter').get(function(){
     return this.metadata;
 }).set(function(metadata){
     this.set({metadata});
 })
 
-apiKeySchema.virtual('statusgetterandsetter').get(function(){
+apiKeySchema.virtual('statusGetterAndSetter').get(function(){
     return this.status;
 }).set(function(status){
     this.set({status});
 })
 
 
-apiKeySchema.virtual('createdAtgetterandsetter').get(function(){
+apiKeySchema.virtual('createdAtGetterAndSetter').get(function(){
     return this.createdAt;
 }).set(function(createdAt){
     this.set({createdAt});
 })
 
-apiKeySchema.virtual('updatedAtgetterandsetter').get(function(){
+apiKeySchema.virtual('updatedAtGetterAndSetter').get(function(){
     return this.updatedAt;
 }).set(function(updatedAt){
     this.set({updatedAt});

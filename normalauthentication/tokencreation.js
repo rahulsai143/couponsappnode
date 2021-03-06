@@ -1,14 +1,15 @@
 const jsonWebToken = require('jsonwebtoken');
 
-function createAccessToken() {
+function createAccessToken(issuerPerson,audiences,time) {
   return jwt.sign({
-    iss: 'rahulreddyk',
-    aud: 'admin',
-    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+    secret: Buffer.from('shhhhhhared-secret', 'base64'),
+    issuer: issuerPerson,
+    audience: audiences,
+    exp: Math.floor(Date.now() / 1000) + time,
     scope: 'full_access',
     sub: `i don't know`,
     jti: genJti(), // unique identifier for the token
-    alg: 'HS256'
+    algorithms: ['HS256']
   }, 'The Best Coupons App');
 }
 

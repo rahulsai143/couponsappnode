@@ -8,13 +8,19 @@ const ObjectId = mongoose.Schema.ObjectId;
 const opts = { toJSON: { virtuals: true } };
 
 const userSchema = new mongoose.Schema({
-    name:{
+    firstName:{
         type :String,
         required :true,
         trim: true,
         maxlength: 100
     },
-    username:{
+    lastName:{
+        type :String,
+        required :true,
+        trim: true,
+        maxlength: 100
+    },
+    userName:{
         type :String,
         required :true,
         unique : true,
@@ -25,8 +31,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true,
       unique: true,
-      trim: true,
-      select: false,
+      trim: true
     },
     password : {
         type : String,
@@ -37,10 +42,9 @@ const userSchema = new mongoose.Schema({
       trim: true
     },
     roles: [{
-          type: ObjectId,
-          ref: 'Role',
-          required: true,
-          select: false
+        type: ObjectId,
+        ref: 'Role',
+        required: true
     }],
     verified: {
       type: Boolean,
@@ -53,74 +57,78 @@ const userSchema = new mongoose.Schema({
     createdAt: {
       type: Date,
       default : Date.now,
-      required: true,
-      select: false,
+      required: true
     },
     updatedAt: {
       type: Date,
       default : Date.now,
-      required: true,
-      select: false,
+      required: true
     },
 },{
     versionKey: false,
   },opts);
 
-userSchema.virtual('namegetterandsetter').get(function(){
-    return this.name;
-}).set(function(name){
-    this.set({name});
+userSchema.virtual('firstNameGetterAndSetter').get(function(){
+    return this.firstName;
+}).set(function(firstName){
+    this.set({firstName});
 })
 
-userSchema.virtual('usernamegetterandsetter').get(function(){
-    return this.username;
-}).set(function(username){
-    this.set({username});
+userSchema.virtual('lastNameGetterAndSetter').get(function(){
+    return this.lastName;
+}).set(function(lastName){
+    this.set({lastName});
 })
 
-userSchema.virtual('emailgetterandsetter').get(function(){
+userSchema.virtual('userNameGetterAndSetter').get(function(){
+    return this.userName;
+}).set(function(userName){
+    this.set({userName});
+})
+
+userSchema.virtual('emailGetterAndSetter').get(function(){
     return this.email;
 }).set(function(email){
     this.set({email});
 })
 
-userSchema.virtual('passwordgetterandsetter').get(function(){
+userSchema.virtual('passwordGetterAndSetter').get(function(){
     return this.password;
 }).set(function(password){
     this.set({password});
 })
 
-userSchema.virtual('profilePicUrlgetterandsetter').get(function(){
+userSchema.virtual('profilePicUrlGetterAndSetter').get(function(){
     return this.profilePicUrl;
 }).set(function(profilePicUrl){
     this.set({profilePicUrl});
 })
 
-userSchema.virtual('rolesgetterandsetter').get(function(){
+userSchema.virtual('rolesGetterAndSetter').get(function(){
     return this.roles;
 }).set(function(roles){
     this.set({roles});
 })
 
-userSchema.virtual('verifiedgetterandsetter').get(function(){
+userSchema.virtual('verifiedGetterAndSetter').get(function(){
     return this.verified;
 }).set(function(verified){
     this.set({verified});
 })
 
-userSchema.virtual('statusgetterandsetter').get(function(){
+userSchema.virtual('statusGetterAndSetter').get(function(){
     return this.status;
 }).set(function(status){
     this.set({status});
 })
 
-userSchema.virtual('createdAtgetterandsetter').get(function(){
+userSchema.virtual('createdAtGetterAndSetter').get(function(){
     return this.createdAt;
 }).set(function(createdAt){
     this.set({createdAt});
 })
 
-userSchema.virtual('updatedAtgetterandsetter').get(function(){
+userSchema.virtual('updatedAtGetterAndSetter').get(function(){
     return this.updatedAt;
 }).set(function(updatedAt){
     this.set({updatedAt});
@@ -131,7 +139,9 @@ userSchema.virtual('updatedAtgetterandsetter').get(function(){
 userSchema.method('toJSON',function(user){
     var data = {
         id : this._id,
-        name : this.name,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        userName : this.userName,
         email : this.email,
         password : this.password,
         profilePicUrl: this.profilePicUrl,
